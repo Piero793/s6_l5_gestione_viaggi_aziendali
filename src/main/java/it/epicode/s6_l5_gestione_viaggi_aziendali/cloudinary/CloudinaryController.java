@@ -37,7 +37,5 @@ public class CloudinaryController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-
 }

@@ -22,4 +22,5 @@ public class Dipendente {
     private String cognome;
     @Column(length = 50, nullable = false)
     private String email;
+    private String fotoUrl;
 }

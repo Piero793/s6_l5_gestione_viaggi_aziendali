@@ -29,4 +29,5 @@ public class DipendenteRequest {
     @Email(message = "L'email deve essere valida")
     @Size(max = 50, message = "L'email deve avere massimo 50 caratteri")
     private String email;
+    private String fotoUrl;
 }

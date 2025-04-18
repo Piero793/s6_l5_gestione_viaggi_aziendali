@@ -65,4 +65,21 @@ public class ViaggioService {
     public Page<Viaggio> getAllViaggi(Pageable pageable) {
         return viaggioRepository.findAll(pageable);
     }
+
+    public ViaggioResponse updateStatoViaggio(Long id, StatoViaggio nuovoStato) {
+        Viaggio viaggio = viaggioRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Viaggio non trovato"));
+
+        viaggio.setStatoViaggio(nuovoStato);
+        viaggioRepository.save(viaggio);
+
+        ViaggioResponse response = new ViaggioResponse();
+        BeanUtils.copyProperties(viaggio, response);
+        response.setDataRichiesta(viaggio.getDataRichiesta().toString());
+        response.setDipendenteId(viaggio.getDipendente().getId());
+
+        return response;
+    }
+
+
 }

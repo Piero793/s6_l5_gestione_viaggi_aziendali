@@ -24,8 +24,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>("Entity not found | " + ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-
-    // validazione da service
+    //  Validazione da service
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Map<String, String>> handleConstraintViolationException(ConstraintViolationException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -39,7 +38,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    // validazione da controller
+    //  Validazione da controller
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
@@ -47,5 +46,12 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
             errors.put(error.getField(), "Errore controller: " + error.getDefaultMessage());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    //  Gestione dell'eccezione per prenotazioni duplicate
+    public static class PrenotazioneDuplicataException extends RuntimeException {
+        public PrenotazioneDuplicataException(String message) {
+            super(message);
+        }
     }
 }
