@@ -1,6 +1,5 @@
 package it.epicode.s6_l5_gestione_viaggi_aziendali.viaggi;
 
-import it.epicode.s6_l5_gestione_viaggi_aziendali.common.CommonResponse;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
